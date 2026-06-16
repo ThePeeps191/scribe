@@ -8,4 +8,3 @@ def transcribe(filename):
 if __name__ == "__main__":
     from groq_api import ask_groq_prompt
     print(ask_groq_prompt(transcribe("test_audio.m4a")))
-

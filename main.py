@@ -20,6 +20,7 @@ def draw_rounded_rect(canvas, x1, y1, x2, y2, r, **kwargs):
     return canvas.create_polygon(points, **kwargs, smooth=True)
 
 draw_rounded_rect(canvas, 3, 3, WIDTH-3, HEIGHT-3, r=25, fill="black", outline="#007BFF", width=3)
+canvas.create_text(WIDTH//2, HEIGHT//2, text="🎙️", font=("Segoe UI", 18), fill="white")
 
 # Window dragging logic
 def start_drag(e):
