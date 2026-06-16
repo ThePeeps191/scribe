@@ -1,1 +1,3 @@
-# scribe
+# Scribe
+
+Dictate with your voice.
