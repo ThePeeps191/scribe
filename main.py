@@ -55,7 +55,8 @@ def stop_recording():
     if recording_data:
         data = np.concatenate(recording_data, axis=0)
         os.makedirs("audio", exist_ok=True)
-        sf.write(f"audio/{time.time()}.wav", data, 44100)
+        t = int(time.time())
+        sf.write(f"audio/{t}.wav", data, 44100)
 
 # Window dragging logic
 def start_drag(e):
