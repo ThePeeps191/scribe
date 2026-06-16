@@ -36,11 +36,11 @@ def drag_window(e):
 def toggle_mute(e):
     global MUTED
     MUTED = not MUTED
-    canvas.itemconfig(slash, state="hidden" if MUTED else "normal")
+    canvas.itemconfig(slash, state="normal" if MUTED else "hidden")
 
 root.bind("<Button-1>", start_drag)
 root.bind("<B1-Motion>", drag_window)
-root.bind("<Button-2>", toggle_mute)
-root.bind("<Button-3>", lambda e: root.destroy())  # Right-click to exit
+root.bind("<Button-3>", toggle_mute)
+root.bind("<Double-Button-1>", lambda e: root.destroy())  # Double left-click to exit
 
 root.mainloop()
