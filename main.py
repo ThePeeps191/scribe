@@ -1,10 +1,12 @@
-import tkinter as tk
-import sounddevice as sd
-import soundfile as sf
 import keyboard
 import threading
 import time
 import os
+
+import tkinter as tk
+import sounddevice as sd
+import soundfile as sf
+import numpy as np
 
 # Window
 root = tk.Tk()
@@ -37,10 +39,23 @@ slash = canvas.create_line(WIDTH // 2 - 14, HEIGHT // 2 + 10, WIDTH // 2 + 14, H
 
 # Audio recording functions
 def start_recording():
-    pass
+    global recording_data, stream
+    recording_data = []
+    def callback(indata, frames, time, status):
+        recording_data.append(indata.copy())
+    stream = sd.InputStream(samplerate=44100, channels=1, callback=callback)
+    stream.start()
 
 def stop_recording():
-    pass
+    global stream
+    if stream:
+        stream.stop()
+        stream.close()
+        stream = None
+    if recording_data:
+        data = np.concatenate(recording_data, axis=0)
+        os.makedirs("audio", exist_ok=True)
+        sf.write(f"audio/{time.time()}.wav", data, 44100)
 
 # Window dragging logic
 def start_drag(e):
