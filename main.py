@@ -2,6 +2,7 @@ import keyboard
 import threading
 import time
 import os
+import pyautogui
 
 import tkinter as tk
 import sounddevice as sd
@@ -10,6 +11,9 @@ import numpy as np
 
 from transcribe_audio import transcribe
 from groq_api import ask_groq_prompt
+
+# Config
+ASK_GROQ = True
 
 # Window
 root = tk.Tk()
@@ -60,8 +64,11 @@ def stop_recording():
         os.makedirs("audio", exist_ok=True)
         t = int(time.time())
         sf.write(f"audio/{t}.wav", data, 44100)
-        text = ask_groq_prompt(transcribe(f"audio/{t}.wav"))
-        print(text)
+        text = transcribe(f"audio/{t}.wav")
+        if ASK_GROQ:
+            text = ask_groq_prompt(text)
+        # print(text)
+        pyautogui.write(text)
 
 # Window dragging logic
 def start_drag(e):
@@ -86,5 +93,8 @@ keyboard.add_hotkey("ctrl+shift+alt+m", lambda: root.after(0, toggle_mute))
 root.bind("<Button-1>", start_drag)
 root.bind("<B1-Motion>", drag_window)
 root.bind("<Button-3>", lambda e: root.destroy())  # Right-click to exit
+
+# Quick test
+_ = transcribe("test_audio.mp3")
 
 root.mainloop()
