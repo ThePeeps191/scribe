@@ -1,5 +1,10 @@
 import tkinter as tk
+import sounddevice as sd
+import soundfile as sf
 import keyboard
+import threading
+import time
+import os
 
 # Window
 root = tk.Tk()

@@ -1,6 +1,6 @@
 # Scribe
 
-Dictate with your voice.
+Dictate with your voice. Currently only supports Windows.
 
 **Left-click and drag**: move the widget around
 
