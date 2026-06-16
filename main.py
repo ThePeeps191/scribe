@@ -13,7 +13,12 @@ root.wm_attributes("-topmost", True)
 root.wm_attributes("-transparentcolor", "magenta")
 WIDTH, HEIGHT = 110, 40
 root.geometry(f"{WIDTH}x{HEIGHT}+300+300")
+
+# Audio recording globals
 MUTED = True
+recording_thread = None
+recording_data = []
+stream = None
 
 # Canvas
 canvas = tk.Canvas(root, width=WIDTH, height=HEIGHT, bg="magenta", highlightthickness=0)
@@ -30,6 +35,13 @@ draw_rounded_rect(canvas, 3, 3, WIDTH-3, HEIGHT-3, r=25, fill="black", outline="
 canvas.create_text(WIDTH // 2 + 18, HEIGHT // 2, text="🎙️", font=("Segoe UI", 18), fill="white")
 slash = canvas.create_line(WIDTH // 2 - 14, HEIGHT // 2 + 10, WIDTH // 2 + 14, HEIGHT // 2 - 10, fill="red", width=3)
 
+# Audio recording functions
+def start_recording():
+    pass
+
+def stop_recording():
+    pass
+
 # Window dragging logic
 def start_drag(e):
     root.x, root.y = e.x, e.y
@@ -43,6 +55,10 @@ def toggle_mute(e=None):
     global MUTED
     MUTED = not MUTED
     canvas.itemconfig(slash, state="normal" if MUTED else "hidden")
+    if MUTED:
+        threading.Thread(target=stop_recording).start()
+    else:
+        threading.Thread(target=start_recording).start()
 
 keyboard.add_hotkey("ctrl+shift+alt+m", lambda: root.after(0, toggle_mute))
 
