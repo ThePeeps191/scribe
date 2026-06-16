@@ -221,4 +221,5 @@ __marimo__/
 
 
 # Storing user recorded audio
-audio/
+/audio/*
+!/audio/.gitkeep

@@ -13,7 +13,7 @@ from transcribe_audio import transcribe
 from groq_api import ask_groq_prompt
 
 # Config
-ASK_GROQ = True
+ASK_GROQ = False
 
 # Window
 root = tk.Tk()
