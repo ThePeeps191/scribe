@@ -8,6 +8,9 @@ import sounddevice as sd
 import soundfile as sf
 import numpy as np
 
+from transcribe_audio import transcribe
+from groq_api import ask_groq_prompt
+
 # Window
 root = tk.Tk()
 root.overrideredirect(True)
@@ -57,6 +60,8 @@ def stop_recording():
         os.makedirs("audio", exist_ok=True)
         t = int(time.time())
         sf.write(f"audio/{t}.wav", data, 44100)
+        text = ask_groq_prompt(transcribe(f"audio/{t}.wav"))
+        print(text)
 
 # Window dragging logic
 def start_drag(e):
