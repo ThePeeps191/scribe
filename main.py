@@ -1,4 +1,5 @@
 import tkinter as tk
+import keyboard
 
 # Window
 root = tk.Tk()
@@ -33,14 +34,15 @@ def drag_window(e):
     y = root.winfo_y() + (e.y - root.y)
     root.geometry(f"+{x}+{y}")
 
-def toggle_mute(e):
+def toggle_mute(e=None):
     global MUTED
     MUTED = not MUTED
     canvas.itemconfig(slash, state="normal" if MUTED else "hidden")
 
+keyboard.add_hotkey("ctrl+shift+alt+m", lambda: root.after(0, toggle_mute))
+
 root.bind("<Button-1>", start_drag)
 root.bind("<B1-Motion>", drag_window)
-root.bind("<Button-3>", toggle_mute)
-root.bind("<Double-Button-1>", lambda e: root.destroy())  # Double left-click to exit
+root.bind("<Button-3>", lambda e: root.destroy())  # Right-click to exit
 
 root.mainloop()

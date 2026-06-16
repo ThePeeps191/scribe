@@ -3,5 +3,7 @@
 Dictate with your voice.
 
 **Left-click and drag**: move the widget around
-**Double left-click**: close the widget
-**Right-click**: start or stop the microphone
+
+**Right-click**: close the widget
+
+**Ctrl + Shift + Alt + m**: start or stop the microphone
