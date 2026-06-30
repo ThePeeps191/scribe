@@ -12,6 +12,8 @@ import numpy as np
 from transcribe_audio import transcribe
 from groq_api import ask_groq_prompt
 
+from tkinter import messagebox
+
 # Config
 ASK_GROQ = False
 
@@ -96,5 +98,8 @@ root.bind("<Button-3>", lambda e: root.destroy())  # Right-click to exit
 
 # Quick test
 _ = transcribe("test_audio.mp3")
+
+# Give User the Controls
+messagebox.showinfo("Controls", "Left Click + Drag: Move\nRight Click: Close Widget\nCTRL + Shift + Alt + M: Start/Stop Recording")
 
 root.mainloop()
