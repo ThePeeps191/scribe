@@ -49,7 +49,7 @@ def draw_rounded_rect(canvas, x1, y1, x2, y2, r, **kwargs):
     ]
     return canvas.create_polygon(points, **kwargs, smooth=True)
 
-draw_rounded_rect(canvas, 3, 3, WIDTH-3, HEIGHT-3, r=25, fill="black", outline="#007BFF", width=3)
+rect_id = draw_rounded_rect(canvas, 3, 3, WIDTH-3, HEIGHT-3, r=25, fill="black", outline="#007BFF", width=3)
 canvas.create_text(WIDTH // 2 + 20, HEIGHT // 2, text="🎙️", font=("Segoe UI", 18), fill="white")
 slash = canvas.create_line(WIDTH // 2 - 14, HEIGHT // 2 + 10, WIDTH // 2 + 14, HEIGHT // 2 - 10, fill="red", width=3)
 
@@ -79,6 +79,15 @@ def stop_recording():
         # print(text)
         pyautogui.write(text)
 
+# Microphone pulsing
+PULSE = None
+
+def start_pulse():
+    pass
+
+def stop_pulse():
+    pass
+
 # Window dragging logic
 def start_drag(e):
     root.x, root.y = e.x, e.y
@@ -93,8 +102,10 @@ def toggle_mute(e=None):
     MUTED = not MUTED
     canvas.itemconfig(slash, state="normal" if MUTED else "hidden")
     if MUTED:
+        stop_pulse()
         threading.Thread(target=stop_recording).start()
     else:
+        start_pulse()
         threading.Thread(target=start_recording).start()
 
 keyboard.add_hotkey("ctrl+shift+alt+m", lambda: root.after(0, toggle_mute))
