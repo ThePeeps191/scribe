@@ -3,6 +3,7 @@ import threading
 import time
 import os
 import pyautogui
+import requests
 
 import tkinter as tk
 import sounddevice as sd
@@ -16,6 +17,12 @@ from tkinter import messagebox
 
 # Config
 ASK_GROQ = False
+
+if ASK_GROQ:
+    try:
+        requests.head("https://www.google.com", timeout=3)
+    except (requests.ConnectionError, requests.Timeout):
+        ASK_GROQ = False
 
 # Window
 root = tk.Tk()

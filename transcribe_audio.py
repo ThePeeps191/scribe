@@ -1,6 +1,9 @@
 import whisper
 
-model = whisper.load_model("base")
+try:
+    model = whisper.load_model("base")
+except MemoryError:
+    model = whisper.load_model("tiny")
 
 def transcribe(filename):
     return model.transcribe(filename)["text"]
