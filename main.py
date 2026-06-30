@@ -83,10 +83,20 @@ def stop_recording():
 PULSE = None
 
 def start_pulse():
-    pass
+    global PULSE
+    brightness = ["#00FF66", "#00CC44", "#009933", "#00CC44"]
+    def tick(i=0):
+        global PULSE
+        canvas.itemconfig(rect_id, outline=brightness[i % len(brightness)])
+        PULSE = root.after(200, tick, i + 1)
+    tick()
 
 def stop_pulse():
-    pass
+    global PULSE
+    if PULSE:
+        root.after_cancel(PULSE)
+        PULSE = None
+    canvas.itemconfig(rect_id, outline="#007BFF")
 
 # Window dragging logic
 def start_drag(e):
