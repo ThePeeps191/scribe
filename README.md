@@ -8,4 +8,4 @@ Dictate with your voice. Currently only supports Windows.
 
 **Right-click**: close the widget
 
-**Ctrl + Shift + Alt + m**: start or stop the microphone
+**Ctrl + Shift + Alt + M**: start or stop the microphone

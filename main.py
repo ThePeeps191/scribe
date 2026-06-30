@@ -100,6 +100,11 @@ root.bind("<Button-3>", lambda e: root.destroy())  # Right-click to exit
 _ = transcribe("test_audio.mp3")
 
 # Give User the Controls
-messagebox.showinfo("Controls", "Left Click + Drag: Move\nRight Click: Close Widget\nCTRL + Shift + Alt + M: Start/Stop Recording")
+msg_box_text = """Left-click and drag: move the widget around
+
+Right-click: close the widget
+
+Ctrl + Shift + Alt + M: start or stop the microphone"""
+messagebox.showinfo("Controls", msg_box_text)
 
 root.mainloop()
