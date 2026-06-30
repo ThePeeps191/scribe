@@ -223,3 +223,6 @@ __marimo__/
 # Storing user recorded audio
 /audio/*
 !/audio/.gitkeep
+
+# Build artifact
+executable.zip

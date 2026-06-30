@@ -53,6 +53,12 @@ Mic audio → WAV file → Whisper (local) → [Groq AI cleanup] → typed at cu
 - **PyAutoGUI** — simulate typing
 - **keyboard** — global hotkeys
 
+## Using the Executable
+
+1. First download `executable.zip` from [Google Drive](https://drive.google.com/file/d/10M1y_tfQeg-De2dCpXSu9d4NdVE4u329/view?usp=sharing).
+2. Unzip `executable.zip`.
+3. Run `scribe.exe` as an administrator (needed because the `keyboard` library requires this).
+
 ## License
 
 MIT
